@@ -14,14 +14,3 @@ def add_driver(data_list):
        VALUES(?, ?, ?, ?, ?, ?, ? );""", id_count, full_name, license_number, rating, auto, fines, last_modified)
     conn.commit()
     id_count += 1
-
-#  cur.execute("""CREATE TABLE drivers(
-#    userid INT PRIMARY KEY,
-#    full_name TEXT,
-#    identification_number TEXT,
-#    rating TEXT,
-#    auto TEXT,
-#    fines TEXT,
-#    last_modified TEXT);
-# """)
-# conn.commit()
