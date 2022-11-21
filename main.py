@@ -56,7 +56,7 @@ while True:
         sql_request_add = [value['userid'], value['full_name'], value['identification_number'], value['rating'],
                            value['auto'], value['fines'], last_modified]
 
-        # Проверка на пустые строки!
+        # Проверка на пустые строки!!
         # функция добавления sql.переменная(sql_request_add) 
         sg.popup(f'Добавлена новая запись: {sql_request_add}')
 
