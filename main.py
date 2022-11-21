@@ -3,13 +3,13 @@ import view_table
 from datetime import date
 
 layout = [
-    [sg.Text('Главное меню программы')],
-    [sg.Text('Заполните необходимы строки и выберите дальнейшее действие')],
+    [sg.Text('ГЛАВНОЕ МЕНЮ ПРОГРАММЫ')],
+    [sg.Text('Заполните необходимые строки и выберите дальнейшее действие:')],
     [sg.Text('ID Сотрудника:'), sg.Input(key='userid')],
     [sg.Text('Полное имя:'), sg.Input(key='full_name')], ## Проверить на заполнение: [sg.Text('Полное имя:'), sg.Input(key='full_name', do_not_clear=False, size=МОЖНО ЗАДАТЬ РАЗМЕР)],
     [sg.Text('Водительское удостоверение:'), sg.Input(key='identification_number')],
     [sg.Text('Рейтинг:'), sg.Input(key='rating')],
-    [sg.Text('Выберите автомобиль из автопарка на котором работает водитель')],
+    [sg.Text('Выберите автомобиль из автопарка, на котором работает водитель:')],
     [sg.Combo(values=['Mazda', 'Lada', 'Hyundai', 'Ford', 'Honda', 'Kia'], size=(45, 10), key='auto')],
     [sg.Text('У водителя есть непогашенные штрафы?')],
     [sg.Combo(values=['Да', 'Нет'], size=(20, 10), key='fines')],
@@ -47,13 +47,13 @@ while True:
         view_table.show_table(sql_request_search, headings) # для теста в переменную вставлена инфо из ввода, должна прийти из запроса sql (sql_request_search изменить на переменную от sql)
         # sg.popup(f'Создана новая запись {sql_request_search}')
         
-     elif event == 'Добавить':  
-        sql_request_add = []
-        last_modified = date.today()
-        sql_request_add = [value['userid'], value['full_name'], value['identification_number'], value['rating'], value['auto'], value['fines'], last_modified]
-        # Проверка на пустые строки!
-        # функция добавления sql.переменная(sql_request_add) 
-        sg.popup(f'Добавлена новая запись: {sql_request_add}')
+    elif event == 'Добавить':
+       sql_request_add = []
+       last_modified = date.today()
+       sql_request_add = [value['userid'], value['full_name'], value['identification_number'], value['rating'], value['auto'], value['fines'], last_modified]
+       # Проверка на пустые строки!
+       # функция добавления sql.переменная(sql_request_add)
+       sg.popup(f'Добавлена новая запись: {sql_request_add}')
         
         
 #     elif event == 'Изменить': # Функция перенесена  в блок поиска
