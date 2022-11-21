@@ -1,6 +1,7 @@
 import PySimpleGUI as sg
 import view_table
 from datetime import date
+import addition_modul
 
 layout = [
     [sg.Text('ГЛАВНОЕ МЕНЮ ПРОГРАММЫ')],
@@ -49,9 +50,9 @@ while True:
         
     elif event == 'Добавить':
        sql_request_add = []
-       last_modified = date.today()
-       sql_request_add = [value['userid'], value['full_name'], value['identification_number'], value['rating'], value['auto'], value['fines'], last_modified]
+       sql_request_add = [value['full_name'], value['identification_number'], value['rating'], value['auto'], value['fines']]
        # Проверка на пустые строки!
+       addition_modul.add_driver(sql_request_add)
        # функция добавления sql.переменная(sql_request_add)
        sg.popup(f'Добавлена новая запись: {sql_request_add}')
         
