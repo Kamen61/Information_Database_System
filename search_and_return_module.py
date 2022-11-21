@@ -1,8 +1,8 @@
 import sqlite3
-# Создание БД
 conn = sqlite3.connect('taxi_drivers.db')
 cur = conn.cursor()
 
+# Создание БД
 # cur.execute("""CREATE TABLE drivers(
 #    userid INT PRIMARY KEY,
 #    full_name TEXT,
@@ -29,16 +29,18 @@ cur = conn.cursor()
 # conn.commit()
 
 
-
-def search(list_parametrs):
+# Вывод данных по параметрам
+def search_param(list_param):
+    # Создаем два списка . В списке list_keys находятся столбцы параметров поиска , в list_values находятся значения параметров поиска
     list_keys=[]
     list_values=[]
     all_columns = ["PRIMARY KEY", "full_name", "identification_number", "rating", "auto", "fines", "last_modified"]
-    for i,j in enumerate(list_parametrs):
+    for i,j in enumerate(list_param):
         if j!='-1':
             list_keys.append(all_columns[i])
             list_values.append(j)
     sql_request = ''
+    # Определяем сколько параметров передал пользователь и формируем запрос
     if len(list_keys) > 1:
         len_list=len(list_keys)
         count=0
@@ -53,3 +55,11 @@ def search(list_parametrs):
         cur.execute(f"""SELECT * FROM drivers WHERE {sql_request}""")
     return cur.fetchall()
 
+
+# Вывод всех данных из таблицы
+def search_all():
+    cur.execute("SELECT * FROM drivers")
+    return cur.fetchall()
+
+
+print(search_all())
