@@ -1,18 +1,20 @@
 import PySimpleGUI as sg
 import view_table
 from datetime import date
+import search_and_return_module as search
 
 layout = [
     [sg.Text('Главное меню программы')],
     [sg.Text('Заполните необходимы строки и выберите дальнейшее действие')],
     [sg.Text('ID Сотрудника:'), sg.Input(key='userid')],
-    [sg.Text('Полное имя:'), sg.Input(key='full_name')], ## Проверить на заполнение: [sg.Text('Полное имя:'), sg.Input(key='full_name', do_not_clear=False, size=МОЖНО ЗАДАТЬ РАЗМЕР)],
+    [sg.Text('Полное имя:'), sg.Input(key='full_name')],
+    ## Проверить на заполнение: [sg.Text('Полное имя:'), sg.Input(key='full_name', do_not_clear=False, size=МОЖНО ЗАДАТЬ РАЗМЕР)],
     [sg.Text('Водительское удостоверение:'), sg.Input(key='identification_number')],
     [sg.Text('Рейтинг:'), sg.Input(key='rating')],
     [sg.Text('Выберите автомобиль из автопарка на котором работает водитель')],
     [sg.Combo(values=['Mazda', 'Lada', 'Hyundai', 'Ford', 'Honda', 'Kia'], size=(45, 10), key='auto')],
     [sg.Text('У водителя есть непогашенные штрафы?')],
-    [sg.Combo(values=['Да', 'Нет'], size=(20, 10), key='fines')],
+    [sg.Combo(values=['True', 'False'], size=(20, 10), key='fines')],
     # [sg.Radio('Нет', 'RADIO', key='finesNo'), sg.Radio('Да', 'RADIO', key='finesYes')],  # второй вариант оформления опции наличия штрафов
     [sg.Text('Для изменения или удаления водителя из базы данных найдите его через поиск')],
     [sg.Button('Поиск'), sg.Button('Добавить'), sg.Button('Выход')]
@@ -27,48 +29,39 @@ while True:
     if event in (sg.WIN_CLOSED, 'Выход'):
         break
     elif event == 'Поиск':
-        sql_request_search = [['1', 'Stephanie Stewart', '35659','4,8','Mazda','True', ''],    # Тест имитирует переменную от sql
-            ['2', 'Sincere Sherman', '30819','3,9','Lada','False', ''],
-            ['3', 'Sidney Horn', '39798','4,5','Hyundai','False', ''],
-            ['4', 'Litzy Yates', '33899','4,4','Lada','False', ''],
-            # ['5', 'Jaxon Mills', '31220','4,3','Ford','False', ''],
-            # ['6', 'Paul Richard', '33565','4,7','Honda','True', ''],
-            # ['7', 'Kamari Holden', '35612','4,2','Ford','True', ''],
-            ['8', 'Gaige Summers', '38515','4,9','Mazda','True', ''],
-            ['9', 'Andrea Snow', '37086','4,8','Kia','False', '']
-            ]
         headings = ['userid', 'full_name', 'identification_number', 'rating', 'auto', 'fines', 'last_modified']
-        # sql_request_search = [] 
-        # last_modified = date.today()
-        # sql_request_search = [value['userid'], value['full_name'], value['identification_number'], value['rating'], value['auto'], value['fines'], last_modified]
-        # print(sql_request_search) # тест(вывод значения в консоль) 
+        sql_request_search = []
+        # last_modified = datetime.datetime.now()
+        sql_request_search = [value['userid'], value['full_name'], value['identification_number'], value['rating'], value['auto'], value['fines']]
+        # print(sql_request_search) # тест(вывод значения в консоль)
         ## функция передачи переменной в запрос sql
         # Возврат переменной из sql
-        view_table.show_table(sql_request_search, headings) # для теста в переменную вставлена инфо из ввода, должна прийти из запроса sql (sql_request_search изменить на переменную от sql)
+
+        # Добавил немного логики. Если пользователь ничего не ввел в строках то ему выдается вся бд. Если ввел то выводится подходящие данные
+        count=0
+        for i in sql_request_search:
+            if i!='':
+                count+=1
+        if not count:
+            sql_request_search = search.search_all()
+            view_table.show_table(sql_request_search, headings)
+        else:
+            result=search.search_param(sql_request_search)
+            view_table.show_table(result,headings)  # для теста в переменную вставлена инфо из ввода, должна прийти из запроса sql (sql_request_search изменить на переменную от sql)
         # sg.popup(f'Создана новая запись {sql_request_search}')
-        
-     elif event == 'Добавить':  
+
+    elif event == 'Добавить':
         sql_request_add = []
         last_modified = date.today()
-        sql_request_add = [value['userid'], value['full_name'], value['identification_number'], value['rating'], value['auto'], value['fines'], last_modified]
+        sql_request_add = [value['userid'], value['full_name'], value['identification_number'], value['rating'],
+                           value['auto'], value['fines'], last_modified]
+
         # Проверка на пустые строки!
         # функция добавления sql.переменная(sql_request_add) 
         sg.popup(f'Добавлена новая запись: {sql_request_add}')
-        
-        
+
 #     elif event == 'Изменить': # Функция перенесена  в блок поиска
 #     elif event == 'Удалить': # Функция перенесена  в блок поиска
-        
-        
-        
-        
-
-
-
-
-
-
-
 
 
 ##=================================================================================================

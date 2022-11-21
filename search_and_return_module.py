@@ -34,9 +34,9 @@ def search_param(list_param):
     # Создаем два списка . В списке list_keys находятся столбцы параметров поиска , в list_values находятся значения параметров поиска
     list_keys=[]
     list_values=[]
-    all_columns = ["PRIMARY KEY", "full_name", "identification_number", "rating", "auto", "fines", "last_modified"]
+    all_columns = ["userid", "full_name", "identification_number", "rating", "auto", "fines", "last_modified"]
     for i,j in enumerate(list_param):
-        if j!='-1':
+        if j!='':
             list_keys.append(all_columns[i])
             list_values.append(j)
     sql_request = ''
@@ -53,13 +53,21 @@ def search_param(list_param):
     else:
         sql_request += '{}="{}"'.format(list_keys[0], list_values[0])
         cur.execute(f"""SELECT * FROM drivers WHERE {sql_request}""")
-    return cur.fetchall()
+    result_list=cur.fetchall()
+    return_list=[list(i) for i in result_list]
+    return return_list
 
 
 # Вывод всех данных из таблицы
 def search_all():
     cur.execute("SELECT * FROM drivers")
-    return cur.fetchall()
+    result_list = cur.fetchall()
+    return_list = [list(i) for i in result_list]
+    return return_list
 
-
-print(search_all())
+# abc=search_all()
+# result_list=[]
+# for i in abc:
+#     result_list.append(list(i))
+#
+# print(result_list)
