@@ -28,7 +28,7 @@ def show_table(sql_request_search, headings):
             # вызов команды sql изменить (sql_request)
         
         # if event == 'Удалить':
-            # вызов команды sql изменить (sql_request)
+            # вызов команды sql удалить (sql_request)
             
 
     table_window.close()
