@@ -57,7 +57,6 @@ while True:
        sql_request_add = [value['full_name'], value['identification_number'], value['rating'], value['auto'], value['fines']]
        # Проверка на пустые строки!
        addition_modul.add_driver(sql_request_add)
-       # функция добавления sql.переменная(sql_request_add)
        sg.popup(f'Добавлена новая запись: {sql_request_add}')
         
         
