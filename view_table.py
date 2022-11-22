@@ -72,6 +72,7 @@ def show_table(sql_request_search, headings):
                 info_change = get_change_info(id_driver)
                 print(info_change)      
                 change_module.sql_update(info_change)
+#               table_window.close()    # предложенная правка от модуля изменений
             # вызов команды sql изменить (info_change)
     table_window.close()
 
