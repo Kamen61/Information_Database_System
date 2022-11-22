@@ -1,7 +1,6 @@
 import PySimpleGUI as sg
 import deletion_modul
-# from change_module import sql_update
-
+import change_module
 def get_change_info(id_num):
     window_change_layout = [
         [sg.Text('Заполните строки для внесения изменений в запись')],
@@ -46,9 +45,7 @@ def show_table(sql_request_search, headings):
         row_height=25)],
         [sg.Button('Изменить'), sg.Button('Удалить'), sg.Button('Вернуться')],
     ]
-
     table_window = sg.Window('Режим просмотра водителей', table_layout, modal=True)
-
     while True:
         event, value = table_window.read()
 
@@ -58,33 +55,24 @@ def show_table(sql_request_search, headings):
             print(request)
             print(id_driver)
             print(type(id_driver))
-
-        
         if event in (sg.WIN_CLOSED, 'Вернуться'):
             break
-            
-            
         if event == 'Удалить':  
             if value['SQL_TABLE']==[]:
                 sg.popup('Нет данных для удаления') 
             else:
                 deletion_modul.add_driver(id_driver)
                 table_window.close()
-                sg.popup('Запись удалена') 
-
-                # table_window[request].update([]) 
-
+                sg.popup('Запись удалена')
+                # table_window[request].update([])
         if event == 'Изменить':
             if value['SQL_TABLE']==[]:
                 sg.popup('Нет данных для изменения') 
             else:
                 info_change = get_change_info(id_driver)
                 print(info_change)      
-            # sql_update(info_change)
+                change_module.sql_update(info_change)
             # вызов команды sql изменить (info_change)
-        
-
-
     table_window.close()
 
 # show_table(sql_request_search, headings)

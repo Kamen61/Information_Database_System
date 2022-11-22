@@ -1,5 +1,4 @@
 import sqlite3
-import main
 import datetime
 
 
