@@ -20,13 +20,15 @@
 
 ## Скриншоты работы: 
 
-<image src="https://i.ibb.co/mvDLc0y/2022-11-23-12-41-41.png" alt="Скрин1">
+[//]: # (<image src="https://i.ibb.co/mvDLc0y/2022-11-23-12-41-41.png" alt="Скрин1">)
+<img width="2048" alt="Скрин1" src="https://i.ibb.co/mvDLc0y/2022-11-23-12-41-41.png">
 ___________________________________________________
-<image src="https://i.ibb.co/2ddqzLx/2022-11-23-12-42-01.png" alt="Скрин2">
+<img width="2048" alt="Скрин2" src="https://i.ibb.co/2ddqzLx/2022-11-23-12-42-01.png">
 ___________________________________________________
-<image src="https://i.ibb.co/84M1854/2022-11-23-12-42-35.png" alt="Скрин3">
+<img width="2048" alt="Скрин3" src="https://i.ibb.co/84M1854/2022-11-23-12-42-35.png">
 ___________________________________________________
-<image src="https://i.ibb.co/zPb6Bys/2022-11-23-12-42-21.png" alt="Скрин4">
+<img width="2048" alt="Скрин4" src="https://i.ibb.co/zPb6Bys/2022-11-23-12-42-21.png">
+
 
 
 ## Инструкции пользователям.
