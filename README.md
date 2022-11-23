@@ -20,8 +20,7 @@
 
 ## Скриншоты работы: 
 
-[//]: # (<image src="https://i.ibb.co/mvDLc0y/2022-11-23-12-41-41.png" alt="Скрин1">)
-<img width="2048" alt="Скрин1" src="https://i.ibb.co/mvDLc0y/2022-11-23-12-41-41.png" height="500">
+<img width="2048" alt="Скрин1" src="https://ibb.co/VvCYQDg" height="500">
 
 ___________________________________________________
 <img width="2048" alt="Скрин2" src="https://i.ibb.co/2ddqzLx/2022-11-23-12-42-01.png" height="500">
