@@ -26,7 +26,7 @@
 <img alt="Скрин2" src="https://i.ibb.co/HCGfsq7/2022-11-23-12-42-01.png">
 
   
-<img alt="Скрин3" src="https://i.ibb.co/XkP2yXJ/2022-11-23-12-42-21.png">
+<img alt="Скрин4" src="https://i.ibb.co/XkP2yXJ/2022-11-23-12-42-21.png">
 
  
 <img alt="Скрин4" src="https://i.ibb.co/JpjR38V/2022-11-23-12-42-35.png">
