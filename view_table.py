@@ -13,14 +13,13 @@ def get_change_info(id_num):
         [sg.Combo(values=['True', 'False'], size=(20, 10), key='fines')],
         [sg.Button('Внести изменения'), sg.Button('Отмена')]
     ]
-
+    global window_change
     window_change = sg.Window('Изменение данных водителя', window_change_layout, modal=True, finalize=True)
 
     while True:        
         event, value = window_change.read()
         if event in (sg.WIN_CLOSED, 'Отмена'):
-            break
-            # window_change.close()
+            return False
         if event == 'Внести изменения':
             info_for_change = []
             info_for_change = [id_num, value['full_name'], value['identification_number'], value['rating'], value['auto'], value['fines']]
@@ -28,7 +27,7 @@ def get_change_info(id_num):
             window_change.close()
             return info_for_change
             # break
-    # window_change.close()
+    window_change.close()
 
 
 def show_table(sql_request_search, headings):
@@ -70,9 +69,12 @@ def show_table(sql_request_search, headings):
                 sg.popup('Нет данных для изменения') 
             else:
                 info_change = get_change_info(id_driver)
-                print(info_change)      
-                change_module.sql_update(info_change)
-#               table_window.close()    # предложенная правка от модуля изменений
+                print(info_change)
+                if info_change:
+                    change_module.sql_update(info_change)
+                else:
+                    window_change.close()
+            table_window.close()    # предложенная правка от модуля изменений
             # вызов команды sql изменить (info_change)
     table_window.close()
 
