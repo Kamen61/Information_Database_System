@@ -31,7 +31,7 @@ while True:
     if event in (sg.WIN_CLOSED, 'Выход'):
         break
     elif event == 'Поиск':
-        headings = ['userid', 'full_name', 'identification_number', 'rating', 'auto', 'fines', 'last_modified']
+        headings = ['ID', 'Full name', 'Identification number', 'Rating', 'Auto', 'Fines', 'Last modified']
         sql_request_search = []
         # last_modified = datetime.datetime.now()
         sql_request_search = [value['userid'], value['full_name'], value['identification_number'], value['rating'], value['auto'], value['fines']]
